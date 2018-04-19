@@ -1,6 +1,6 @@
 {
   "name": "@onixjs/enumerable",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "Wrapper class for JavaScript Generators, provides operations as filter, map, reduce, etc.",
   "main": "dist/src/index.js",
   "scripts": {
@@ -36,6 +36,13 @@
   "bugs": {
     "url": "https://github.com/onixjs/enumerable/issues"
   },
+  "keywords": [
+    "Enumerable",
+    "Generators",
+    "ES6",
+    "TypeScript",
+    "OnixJS"
+  ],
   "files": [
     "dist/src",
     "dist6/src",

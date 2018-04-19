@@ -1,5 +1,6 @@
 import {filter} from './filter';
 import {map} from './map';
+import {reduce} from './reduce';
 
 export class Enumerable {
   /**
@@ -22,6 +23,11 @@ export class Enumerable {
 
   map<T>(mapper): T | Enumerable {
     this.iterator = map(this.iterator(), mapper);
+    return this;
+  }
+
+  reduce<T>(reducer): T | Enumerable {
+    this.iterator = reduce(this.iterator(), reducer);
     return this;
   }
 }
