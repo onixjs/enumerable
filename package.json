@@ -1,0 +1,103 @@
+{
+  "name": "@onixjs/enumerable",
+  "version": "1.0.0-alpha.1",
+  "description": "Wrapper class for JavaScript Generators, provides operations as filter, map, reduce, etc.",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "build": "npm run lint:fix && npm run build:dist && npm run build:dist6 && npm run build:docs",
+    "build:dist": "tsc --target es2017 --outDir dist",
+    "build:dist6": "tsc --target es2015 --outDir dist6",
+    "build:watch": "tsc --watch",
+    "build:docs": "typedoc --out ./documentation ./src",
+    "clean": "rm -rf dist dist6",
+    "lint": "npm run prettier:check && npm run tslint",
+    "lint:fix": "npm run prettier:fix && npm run tslint:fix",
+    "prettier:cli": "prettier \"**/*.ts\" \"**/*.js\"",
+    "prettier:check": "npm run prettier:cli -- -l",
+    "prettier:fix": "npm run prettier:cli -- --write",
+    "tslint": "tslint -c tslint.full.json --project tsconfig.json --type-check",
+    "tslint:fix": "npm run lint -- --fix",
+    "prepublish": "npm run build",
+    "pretest": "npm run lint:fix && npm run clean && npm run build",
+    "test": "nyc ava && nyc report --reporter=text-lcov | coveralls",
+    "posttest": "npm run lint",
+    "serve:docs": "npm run build && node ./dist/documentation"
+  },
+  "author": {
+    "name": "Jonathan Casarrubias",
+    "email": "jcasarrubias@mean.expert",
+    "url": "https://github.com/mean-expert-official"
+  },
+  "homepage": "https://github.com/onixjs/core#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onixjs/core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/onixjs/core/issues"
+  },
+  "files": [
+    "dist/src",
+    "dist6/src",
+    "index.d.ts",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.10.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^9.4.6",
+    "ava": "^0.25.0",
+    "coveralls": "^3.0.0",
+    "finalhandler": "^1.1.1",
+    "nyc": "^11.6.0",
+    "prettier": "^1.10.2",
+    "serve-static": "^1.13.1",
+    "tslint": "^5.9.1",
+    "typedoc": "^0.10.0",
+    "typeorm": "^0.1.12",
+    "typescript": "^2.6.2"
+  },
+  "ava": {
+    "files": [
+      "dist/test/**/*.unit.js",
+      "dist/test/**/*.acceptance.js"
+    ],
+    "source": [
+      "dist/test/**/*.unit.js",
+      "dist/test/**/*.acceptance.js"
+    ],
+    "match": [],
+    "concurrency": 5,
+    "failFast": true,
+    "failWithoutAssertions": false,
+    "tap": true,
+    "color": true,
+    "verbose": true,
+    "compileEnhancements": false,
+    "require": [],
+    "babel": {}
+  },
+  "optionalDependencies": {
+    "bufferutil": "^3.0.3",
+    "utf-8-validate": "^4.0.0"
+  },
+  "nyc": {
+    "exclude": [
+      "dist/src/core/app.server.js",
+      "dist6/src/core/app.server.js",
+      "coverage/**",
+      "dist/test/**",
+      "dist6/test/**",
+      "test/**",
+      "test{,-*}.js",
+      "**/test/**",
+      "**/*.test.js",
+      "**/__tests__/**",
+      "**/node_modules/**"
+    ]
+  }
+}
