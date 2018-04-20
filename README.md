@@ -11,8 +11,21 @@ The OnixJS Enumerable Class can be used either on TypeScript or ES6+ Projects.
 ```sh
 $ npm install --save @onixjs/enumerable
 ```
+
 # Usage
 The following are a set of examples of the operations available when wrapping a JavaScript Generator.
+
+# List of Contents
+
+- [Map](https://github.com/onixjs/enumerable#map)
+- [Filter](https://github.com/onixjs/enumerable#filter)
+- [Reduce](https://github.com/onixjs/enumerable#reduce)
+- [Join](https://github.com/onixjs/enumerable#join)
+- [Find](https://github.com/onixjs/enumerable#find)
+- [Every](https://github.com/onixjs/enumerable#every)
+- [Some](https://github.com/onixjs/enumerable#some)
+- [Includes](https://github.com/onixjs/enumerable#includes)
+- [To Array](https://github.com/onixjs/enumerable#to-array)
 
 ### Map
 The `map()` method creates a new generator with the results of calling a provided function on every element in the calling iterable.
@@ -69,6 +82,26 @@ const result = EnumerableFoo.reduce((a, b) => a + b);
 console.log(result); // Expected Result: 15
 ```
 
+### Join
+The `join()` method joins all elements of an iterable object into a string and returns this string.
+
+```js
+import { Enumerable } from '@onixjs/enumerable';
+
+function* foo() {
+    yield 1;
+    yield 2;
+    yield 3;
+    yield 4;
+    yield 5;
+}
+
+const EnumerableFoo = new Enumerable(foo);
+
+console.log(EnumerableFoo.join()); // Expected Result: 1,2,3,4,5
+console.log(EnumerableFoo.join(' ')); // Expected Result: 1 2 3 4 5
+```
+
 ### Every
 The `every()` method tests whether all elements in an iterable pass the test implemented by the provided function.
 
@@ -86,6 +119,25 @@ function* foo() {
 const EnumerableFoo = new Enumerable(foo);
 const result = EnumerableFoo.every(value => value < 10);
 
+console.log(result); // Expected Result: true
+```
+
+### Some
+The `some()` method tests whether at least one element in the iterator passes the test implemented by the provided function.
+
+```js
+import { Enumerable } from '@onixjs/enumerable';
+
+function* foo() {
+    yield 1;
+    yield 2;
+    yield 3;
+    yield 4;
+    yield 5;
+}
+
+const EnumerableFoo = new Enumerable(foo);
+const result = EnumerableFoo.some(value => value > 4);
 console.log(result); // Expected Result: true
 ```
 

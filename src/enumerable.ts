@@ -1,8 +1,11 @@
-import {filter} from './filter';
-import {map} from './map';
-import {reduce} from './reduce';
-import {every} from './every';
-import {find} from './find';
+import {filter} from './operators/filter';
+import {map} from './operators/map';
+import {reduce} from './operators/reduce';
+import {every} from './operators/every';
+import {some} from './operators/some';
+import {find} from './operators/find';
+import {includes} from './operators/includes';
+import {join} from './operators/join';
 /**
  * @class Enumerable
  * @author Jonathan Casarrubias
@@ -72,13 +75,43 @@ export class Enumerable {
     return this;
   }
   /**
+   * @method some
+   * @param threshold
+   * The some() method tests whether at least one element in the iterator passes
+   * the test implemented by the provided function.
+   */
+  some(threshold): Enumerable {
+    this.iterator = some(this.iterator, threshold);
+    return this;
+  }
+  /**
    * @method find
    * @param finder
    * The find() method returns the value of the first element in the iterable that
-   * satisfies the provided testing function. Otherwise undefined is returned..
+   * satisfies the provided testing function. Otherwise undefined is returned.
    */
   find(finder): Enumerable {
     this.iterator = find(this.iterator, finder);
+    return this;
+  }
+  /**
+   * @method includes
+   * @param criteria
+   * The includes() method determines whether an iterator includes a certain element,
+   * returning true or false as appropriate.
+   */
+  includes(criteria): Enumerable {
+    this.iterator = includes(this.iterator, criteria);
+    return this;
+  }
+  /**
+   * @method join
+   * @param separator
+   * The join() method joins all elements of an iterable object
+   * into a string and returns this string.
+   */
+  join(separator = ','): Enumerable {
+    this.iterator = join(this.iterator, separator);
     return this;
   }
   /**

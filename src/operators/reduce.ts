@@ -6,13 +6,13 @@
  * @license MIT
  */
 export function* reduce(iterator, reducer) {
-  let result;
+  let acumulator;
   for (const value of iterator) {
-    if (result) {
-      result = reducer(result, value);
+    if (acumulator) {
+      acumulator = reducer(acumulator, value);
     } else {
-      result = value;
+      acumulator = value;
     }
   }
-  yield result;
+  yield acumulator;
 }

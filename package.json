@@ -1,6 +1,6 @@
 {
   "name": "@onixjs/enumerable",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "description": "Wrapper class for JavaScript Generators, provides operations as filter, map, reduce, etc.",
   "main": "dist/src/index.js",
   "scripts": {
