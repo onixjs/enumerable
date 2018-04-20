@@ -10,7 +10,7 @@ test('OnixJS Enumerable: Test Iterator', t => {
     yield 5;
   }
   const EnumerableFoo = new Enumerable(foo);
-  const result = <Enumerable>EnumerableFoo.filter(value => value > 3);
+  const result = EnumerableFoo.filter(value => value > 3);
   t.deepEqual([...result], [4, 5]);
 });
 
@@ -23,7 +23,7 @@ test('OnixJS Enumerable: Test Filter', t => {
     yield 5;
   }
   const EnumerableFoo = new Enumerable(foo);
-  const result = <Enumerable>EnumerableFoo.filter(value => value > 4);
+  const result = EnumerableFoo.filter(value => value > 4);
   t.is(result.iterator.next().value, 5);
   t.true(result.iterator.next().done);
 });
@@ -33,7 +33,7 @@ test('OnixJS Enumerable: Test Map', t => {
     yield 'Hello';
   }
   const EnumerableFoo = new Enumerable(foo);
-  const result = <Enumerable>EnumerableFoo.map(value => `${value} World`);
+  const result = EnumerableFoo.map(value => `${value} World`);
   t.is(result.iterator.next().value, 'Hello World');
   t.true(result.iterator.next().done);
 });
@@ -47,12 +47,12 @@ test('OnixJS Enumerable: Test Reduce', t => {
     yield 5;
   }
   const EnumerableFoo = new Enumerable(foo);
-  const result = <Enumerable>EnumerableFoo.reduce((a, b) => a + b);
+  const result = EnumerableFoo.reduce((a, b) => a + b);
   t.is(result.iterator.next().value, 15);
   t.true(result.iterator.next().done);
 });
 
-test('OnixJS Enumerable: Test Truthy', t => {
+test('OnixJS Enumerable: Test Every Truthy', t => {
   function* foo() {
     yield 1;
     yield 2;
@@ -61,12 +61,12 @@ test('OnixJS Enumerable: Test Truthy', t => {
     yield 5;
   }
   const EnumerableFoo = new Enumerable(foo);
-  const result = <Enumerable>EnumerableFoo.every(value => value > 0);
+  const result = EnumerableFoo.every(value => value > 0);
   t.true(result.iterator.next().value);
   t.true(result.iterator.next().done);
 });
 
-test('OnixJS Enumerable: Test Falsy', t => {
+test('OnixJS Enumerable: Test Every Falsy', t => {
   function* foo() {
     yield 1;
     yield 2;
@@ -75,7 +75,7 @@ test('OnixJS Enumerable: Test Falsy', t => {
     yield 5;
   }
   const EnumerableFoo = new Enumerable(foo);
-  const result = <Enumerable>EnumerableFoo.every(value => value > 40);
+  const result = EnumerableFoo.every(value => value > 40);
   t.false(result.iterator.next().value);
   t.true(result.iterator.next().done);
 });

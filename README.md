@@ -2,7 +2,7 @@ OnixJS - Enumerable Wrapper for JavaScript Generators
 ===================================
 [![Coverage Status](https://coveralls.io/repos/github/onixjs/enumerable/badge.svg?branch=master)](https://coveralls.io/github/onixjs/enumerable?branch=master) [![Build Status](https://travis-ci.org/onixjs/enumerable.svg?branch=master)](https://travis-ci.org/onixjs/enumerable) [![npm (scoped)](https://img.shields.io/npm/v/@onixjs/enumerable.svg)](http://npmjs.com/package/@onixjs/enumerable)
 
-The OnixJS Enumerable Class is a wrapper for JavaScript Generators in order to provide Array Alike operations such as: filter, map, reduce, every, etc.
+The OnixJS Enumerable Class is a wrapper for JavaScript Generators in order to provide Array alike operations such as: filter, map, reduce, every, etc.
 
 The OnixJS Enumerable Class can be used either on TypeScript or ES6+ Projects.
 

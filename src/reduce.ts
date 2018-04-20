@@ -1,3 +1,10 @@
+/**
+ * @function every
+ * @param iterator 
+ * @param reducer
+ * @author Jonathan Casarrubias
+ * @license MIT
+ */
 export function* reduce(iterator, reducer) {
   let result;
   for (const value of iterator) {
