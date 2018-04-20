@@ -2,6 +2,7 @@ import {filter} from './filter';
 import {map} from './map';
 import {reduce} from './reduce';
 import {every} from './every';
+import {find} from './find';
 /**
  * @class Enumerable
  * @author Jonathan Casarrubias
@@ -10,6 +11,11 @@ import {every} from './every';
  * in order to provide Array alike operations such as: filter, map, reduce, every, etc.
  */
 export class Enumerable {
+  /**
+   * @property iterator
+   * @description exposed iterator that provides next() method
+   */
+  public iterator;
   /**
    * Make this class as an iterable object.
    */
@@ -21,7 +27,10 @@ export class Enumerable {
    * @param iterator
    * receives an iterable generator
    */
-  constructor(public iterator) {}
+  constructor(private generator: () => IterableIterator<any>) {
+    // Get iterator from generator
+    this.iterator = this.generator();
+  }
   /**
    * @method filter
    * @param predicate
@@ -29,7 +38,7 @@ export class Enumerable {
    * pass the test implemented by the provided function.
    */
   filter(predicate): Enumerable {
-    this.iterator = filter(this.iterator(), predicate);
+    this.iterator = filter(this.iterator, predicate);
     return this;
   }
   /**
@@ -39,7 +48,7 @@ export class Enumerable {
    * a provided function on every element in the calling iterable.
    */
   map(mapper): Enumerable {
-    this.iterator = map(this.iterator(), mapper);
+    this.iterator = map(this.iterator, mapper);
     return this;
   }
   /**
@@ -49,7 +58,7 @@ export class Enumerable {
    * each iterated element (from top to bottom) to reduce it to a single value.
    */
   reduce(reducer): Enumerable {
-    this.iterator = reduce(this.iterator(), reducer);
+    this.iterator = reduce(this.iterator, reducer);
     return this;
   }
   /**
@@ -59,7 +68,25 @@ export class Enumerable {
    * test implemented by the provided function.
    */
   every(threshold): Enumerable {
-    this.iterator = every(this.iterator(), threshold);
+    this.iterator = every(this.iterator, threshold);
     return this;
+  }
+  /**
+   * @method find
+   * @param finder
+   * The find() method returns the value of the first element in the iterable that
+   * satisfies the provided testing function. Otherwise undefined is returned..
+   */
+  find(finder): Enumerable {
+    this.iterator = find(this.iterator, finder);
+    return this;
+  }
+  /**
+   * @method toArray
+   * The toArray() method will return an array containing the iterated
+   * elements
+   */
+  toArray<T>(): Array<T> {
+    return [...this];
   }
 }

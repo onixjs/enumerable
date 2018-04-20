@@ -1,6 +1,6 @@
 /**
- * @function every
- * @param iterator 
+ * @function reduce
+ * @param iterator
  * @param reducer
  * @author Jonathan Casarrubias
  * @license MIT

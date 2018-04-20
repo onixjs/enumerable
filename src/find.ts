@@ -1,14 +1,16 @@
 /**
- * @function filter
+ * @function find
  * @param iterator
- * @param predicate
+ * @param finder
  * @author Jonathan Casarrubias
  * @license MIT
  */
-export function* filter(iterator, predicate) {
+export function* find(iterator, finder) {
   for (const value of iterator) {
-    if (predicate(value)) {
+    if (finder(value)) {
       yield value;
+      return;
     }
   }
+  yield undefined;
 }

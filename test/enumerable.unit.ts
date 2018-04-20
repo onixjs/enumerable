@@ -14,6 +14,19 @@ test('OnixJS Enumerable: Test Iterator', t => {
   t.deepEqual([...result], [4, 5]);
 });
 
+test('OnixJS Enumerable: Test toArray', t => {
+  function* foo() {
+    yield 1;
+    yield 2;
+    yield 3;
+    yield 4;
+    yield 5;
+  }
+  const EnumerableFoo = new Enumerable(foo);
+  const result = EnumerableFoo.toArray();
+  t.deepEqual(result, [1, 2, 3, 4, 5]);
+});
+
 test('OnixJS Enumerable: Test Filter', t => {
   function* foo() {
     yield 1;
@@ -77,5 +90,49 @@ test('OnixJS Enumerable: Test Every Falsy', t => {
   const EnumerableFoo = new Enumerable(foo);
   const result = EnumerableFoo.every(value => value > 40);
   t.false(result.iterator.next().value);
+  t.true(result.iterator.next().done);
+});
+
+test('OnixJS Enumerable: Test Find Success', t => {
+  function* foo() {
+    yield 1;
+    yield 2;
+    yield 3;
+    yield 4;
+    yield 5;
+  }
+  const EnumerableFoo = new Enumerable(foo);
+  const result = EnumerableFoo.find(value => value > 1);
+  t.is(result.iterator.next().value, 2);
+  t.true(result.iterator.next().done);
+});
+
+test('OnixJS Enumerable: Test Find (Not Found)', t => {
+  function* foo() {
+    yield 1;
+    yield 2;
+    yield 3;
+    yield 4;
+    yield 5;
+  }
+  const EnumerableFoo = new Enumerable(foo);
+  const result = EnumerableFoo.find(value => value > 6);
+  t.is(result.iterator.next().value, undefined);
+  t.true(result.iterator.next().done);
+});
+
+test('OnixJS Enumerable: Test Chained Operations', t => {
+  function* foo() {
+    yield 1;
+    yield 2;
+    yield 3;
+    yield 4;
+    yield 5;
+  }
+  const EnumerableFoo = new Enumerable(foo);
+  const result = EnumerableFoo.filter(value => value < 2).map(
+    value => value - 1,
+  );
+  t.is(result.iterator.next().value, 0);
   t.true(result.iterator.next().done);
 });

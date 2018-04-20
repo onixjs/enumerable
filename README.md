@@ -14,7 +14,7 @@ $ npm install --save @onixjs/enumerable
 # Usage
 The following are a set of examples of the operations available when wrapping a JavaScript Generator.
 
-#### Map
+### Map
 The `map()` method creates a new generator with the results of calling a provided function on every element in the calling iterable.
 
 ```js
@@ -25,11 +25,11 @@ function* foo() {
 }
 
 const EnumerableFoo = new Enumerable(foo);
-const result = <Enumerable> EnumerableFoo.map(value => `${value} World`);
+const result = EnumerableFoo.map(value => `${value} World`);
 
 console.log(result); // Expected Result: Hello World
 ```
-#### Filter
+### Filter
 The `filter()` method creates a new generator with all elements that pass the test implemented by the provided function.
 
 ```js
@@ -44,12 +44,12 @@ function* foo() {
 }
 
 const EnumerableFoo = new Enumerable(foo);
-const result = <Enumerable> EnumerableFoo.filter(value => value > 4);
+const result = EnumerableFoo.filter(value => value > 4);
 
 console.log(result); // Expected Result: 5
 ```
 
-#### Reduce
+### Reduce
 The `reduce()` method applies a function against an accumulator and each iterated element (from top to bottom) to reduce it to a single value.
 
 ```js
@@ -64,12 +64,12 @@ function* foo() {
 }
 
 const EnumerableFoo = new Enumerable(foo);
-const result = <Enumerable> EnumerableFoo.reduce((a, b) => a + b);
+const result = EnumerableFoo.reduce((a, b) => a + b);
 
 console.log(result); // Expected Result: 15
 ```
 
-#### Every
+### Every
 The `every()` method tests whether all elements in an iterable pass the test implemented by the provided function.
 
 ```js
@@ -84,9 +84,49 @@ function* foo() {
 }
 
 const EnumerableFoo = new Enumerable(foo);
-const result = <Enumerable> EnumerableFoo.every(value => value < 10);
+const result = EnumerableFoo.every(value => value < 10);
 
 console.log(result); // Expected Result: true
+```
+
+### Find
+The `find()` method returns the value of the first element in the iterable that satisfies the provided testing function. Otherwise undefined is returned.
+
+```js
+import { Enumerable } from '@onixjs/enumerable';
+
+function* foo() {
+    yield 1;
+    yield 2;
+    yield 3;
+    yield 4;
+    yield 5;
+}
+
+const EnumerableFoo = new Enumerable(foo);
+const result = EnumerableFoo.find(value => value > 1);
+
+console.log(result); // Expected Result: 2
+```
+
+### To Array
+The `toArray()` method returns the iterated elements in an Array form.
+
+```js
+import { Enumerable } from '@onixjs/enumerable';
+
+function* foo() {
+    yield 1;
+    yield 2;
+    yield 3;
+    yield 4;
+    yield 5;
+}
+
+const EnumerableFoo = new Enumerable(foo);
+const result = EnumerableFoo.toArray();
+
+console.log(result); // Expected Result: [1, 2, 3, 4, 5]
 ```
 
 # Software MIT License

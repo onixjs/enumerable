@@ -1,7 +1,7 @@
 /**
  * @function map
- * @param iterator 
- * @param mapper 
+ * @param iterator
+ * @param mapper
  * @author Jonathan Casarrubias
  * @license MIT
  */

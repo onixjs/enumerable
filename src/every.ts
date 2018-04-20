@@ -1,7 +1,7 @@
 /**
  * @function every
- * @param iterator 
- * @param threshold 
+ * @param iterator
+ * @param threshold
  * @author Jonathan Casarrubias
  * @license MIT
  */
