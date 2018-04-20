@@ -1,6 +1,7 @@
 import {filter} from './filter';
 import {map} from './map';
 import {reduce} from './reduce';
+import {every} from './every';
 
 export class Enumerable {
   /**
@@ -13,21 +14,26 @@ export class Enumerable {
    * @constructor
    * @param iterator
    * receives an iterable generator
-   */ import;
-  constructor(private iterator) {}
+   */
+  constructor(public iterator) {}
 
-  filter<T>(predicate): T | Enumerable {
+  filter(predicate): Enumerable {
     this.iterator = filter(this.iterator(), predicate);
     return this;
   }
 
-  map<T>(mapper): T | Enumerable {
+  map(mapper): Enumerable {
     this.iterator = map(this.iterator(), mapper);
     return this;
   }
 
-  reduce<T>(reducer): T | Enumerable {
+  reduce(reducer): Enumerable {
     this.iterator = reduce(this.iterator(), reducer);
+    return this;
+  }
+
+  every(threshold): Enumerable {
+    this.iterator = every(this.iterator(), threshold);
     return this;
   }
 }

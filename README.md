@@ -2,7 +2,7 @@ OnixJS - Enumerable Wrapper for JavaScript Generators
 ===================================
 [![Coverage Status](https://coveralls.io/repos/github/onixjs/enumerable/badge.svg?branch=master)](https://coveralls.io/github/onixjs/enumerable?branch=master) [![Build Status](https://travis-ci.org/onixjs/enumerable.svg?branch=master)](https://travis-ci.org/onixjs/enumerable) [![npm (scoped)](https://img.shields.io/npm/v/@onixjs/enumerable.svg)](http://npmjs.com/package/@onixjs/enumerable)
 
-The OnixJS Enumerable Class is a wrapper for JavaScript Generators in order to provide Array Like operations like, filter, map, reduce, etc.
+The OnixJS Enumerable Class is a wrapper for JavaScript Generators in order to provide Array Alike operations such as: filter, map, reduce, every, etc.
 
 The OnixJS Enumerable Class can be used either on TypeScript or ES6+ Projects.
 
@@ -15,6 +15,7 @@ $ npm install --save @onixjs/enumerable
 The following are a set of examples of the operations available when wrapping a JavaScript Generator.
 
 #### Map
+The `map()` method creates a new generator with the results of calling a provided function on every element in the calling iterable.
 
 ```js
 import { Enumerable } from '@onixjs/enumerable';
@@ -29,6 +30,7 @@ const result = <Enumerable> EnumerableFoo.map(value => `${value} World`);
 console.log(result); // Expected Result: Hello World
 ```
 #### Filter
+The `filter()` method creates a new generator with all elements that pass the test implemented by the provided function.
 
 ```js
 import { Enumerable } from '@onixjs/enumerable';
@@ -48,6 +50,7 @@ console.log(result); // Expected Result: 5
 ```
 
 #### Reduce
+The `reduce()` method applies a function against an accumulator and each iterated element (from top to bottom) to reduce it to a single value.
 
 ```js
 import { Enumerable } from '@onixjs/enumerable';
@@ -64,6 +67,26 @@ const EnumerableFoo = new Enumerable(foo);
 const result = <Enumerable> EnumerableFoo.reduce((a, b) => a + b);
 
 console.log(result); // Expected Result: 15
+```
+
+#### Every
+The `every()` method tests whether all elements in an iterable pass the test implemented by the provided function.
+
+```js
+import { Enumerable } from '@onixjs/enumerable';
+
+function* foo() {
+    yield 1;
+    yield 2;
+    yield 3;
+    yield 4;
+    yield 5;
+}
+
+const EnumerableFoo = new Enumerable(foo);
+const result = <Enumerable> EnumerableFoo.every(value => value < 10);
+
+console.log(result); // Expected Result: true
 ```
 
 # Software MIT License
